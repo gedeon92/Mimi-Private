@@ -75,7 +75,7 @@ const CustomerDetail = () => {
         ) : (
           <ul className="mt-4 divide-y divide-border">
             {customer.orders.map((o) => (
-              <li key={o.id} className="flex items-center justify-between gap-4 py-3 text-sm">
+              <li key={o.id} className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 py-3 text-sm">
                 <Link to={`/commandes/${o.id}`} className="link-underline text-foreground">
                   {o.id.slice(0, 8).toUpperCase()}
                 </Link>

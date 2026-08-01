@@ -133,7 +133,7 @@ const AddressForm = ({
         Définir comme adresse par défaut
       </label>
 
-      {error && <p className="mt-4 text-sm text-destructive">{error}</p>}
+      {error && <p role="alert" className="mt-4 text-sm text-destructive">{error}</p>}
 
       <div className="mt-6 flex gap-3">
         <button

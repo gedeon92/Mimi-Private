@@ -62,7 +62,7 @@ const Register = () => {
           autoComplete="new-password"
           placeholder="8 caractères minimum"
         />
-        {error && <p className="text-sm text-destructive">{error}</p>}
+        {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
         <AuthSubmit disabled={submitting}>
           {submitting ? "Création…" : "Créer mon compte"}
         </AuthSubmit>

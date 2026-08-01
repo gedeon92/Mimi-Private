@@ -80,7 +80,7 @@ const Profile = () => {
               <Input id="phone" name="phone" type="tel" defaultValue={admin.phone ?? ""} />
             </div>
             <p className="text-xs text-muted-foreground">E-mail : {admin.email}</p>
-            {profileError && <p className="text-sm text-destructive">{profileError}</p>}
+            {profileError && <p role="alert" className="text-sm text-destructive">{profileError}</p>}
             <Button type="submit" disabled={profileSubmitting}>
               {profileSubmitting ? "Enregistrement…" : "Enregistrer"}
             </Button>
@@ -98,7 +98,7 @@ const Profile = () => {
               <Label htmlFor="newPassword">Nouveau mot de passe</Label>
               <Input id="newPassword" name="newPassword" type="password" required autoComplete="new-password" minLength={8} />
             </div>
-            {passwordError && <p className="text-sm text-destructive">{passwordError}</p>}
+            {passwordError && <p role="alert" className="text-sm text-destructive">{passwordError}</p>}
             <Button type="submit" disabled={passwordSubmitting}>
               {passwordSubmitting ? "Mise à jour…" : "Changer le mot de passe"}
             </Button>

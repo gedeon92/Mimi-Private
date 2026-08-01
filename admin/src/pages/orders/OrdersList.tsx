@@ -41,8 +41,8 @@ const OrdersList = () => {
       <p className="eyebrow-accent mb-2">Ventes</p>
       <h1 className="font-serif text-4xl text-foreground">Commandes</h1>
 
-      <div className="mt-6 flex flex-wrap gap-3">
-        <div className="relative w-64">
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <div className="relative w-full sm:w-64">
           <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" strokeWidth={1.6} />
           <Input
             placeholder="Rechercher un client…"
@@ -51,7 +51,7 @@ const OrdersList = () => {
             className="pl-10"
           />
         </div>
-        <Select value={status} onChange={(e) => setStatus(e.target.value as OrderStatus | "")} className="w-52">
+        <Select value={status} onChange={(e) => setStatus(e.target.value as OrderStatus | "")} className="w-full sm:w-52">
           <option value="">Tous les statuts</option>
           {Object.entries(statusLabels).map(([value, label]) => (
             <option key={value} value={value}>{label}</option>
@@ -75,7 +75,7 @@ const OrdersList = () => {
             </thead>
             <tbody className="divide-y divide-border">
               {data?.items.map((o) => (
-                <tr key={o.id}>
+                <tr key={o.id} className="transition-colors hover:bg-offwhite/60">
                   <td className="px-6 py-4">
                     <Link to={`/commandes/${o.id}`} className="link-underline font-medium text-foreground">
                       {o.id.slice(0, 8).toUpperCase()}

@@ -56,18 +56,18 @@ const ProductsList = () => {
         </Link>
       </div>
 
-      <div className="mt-6 flex flex-wrap gap-3">
-        <div className="relative w-64">
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <div className="relative w-full sm:w-64">
           <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" strokeWidth={1.6} />
           <Input placeholder="Rechercher…" value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
         </div>
-        <Select value={category} onChange={(e) => setCategory(e.target.value)} className="w-52">
+        <Select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full sm:w-52">
           <option value="">Toutes les catégories</option>
           {categories?.map((c) => (
             <option key={c.id} value={c.slug}>{c.name}</option>
           ))}
         </Select>
-        <Select value={status} onChange={(e) => setStatus(e.target.value as typeof status)} className="w-48">
+        <Select value={status} onChange={(e) => setStatus(e.target.value as typeof status)} className="w-full sm:w-48">
           <option value="">Tous les statuts</option>
           <option value="active">Disponible</option>
           <option value="inactive">Indisponible</option>
@@ -94,12 +94,19 @@ const ProductsList = () => {
                 const totalStock = p.variants.reduce((n, v) => n + v.stock, 0);
                 const mainImage = p.variants[0]?.images[0]?.url;
                 return (
-                  <tr key={p.id}>
+                  <tr key={p.id} className="transition-colors hover:bg-offwhite/60">
                     <td className="px-6 py-4">
                       <Link to={`/produits/${p.id}`} className="flex items-center gap-3">
                         <div className="h-12 w-10 shrink-0 overflow-hidden rounded-md bg-offwhite">
                           {mainImage && (
-                            <img src={resolveImage(mainImage)} alt={p.name} className="h-full w-full object-cover" />
+                            <img
+                              src={resolveImage(mainImage)}
+                              alt={p.name}
+                              width={40}
+                              height={48}
+                              loading="lazy"
+                              className="h-full w-full object-cover"
+                            />
                           )}
                         </div>
                         <div>

@@ -49,7 +49,7 @@ const Login = () => {
             <Label htmlFor="password">Mot de passe</Label>
             <Input id="password" name="password" type="password" autoComplete="current-password" required />
           </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
+          {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
           <Button type="submit" disabled={submitting} className="w-full">
             {submitting ? "Connexion…" : "Se connecter"}
           </Button>

@@ -35,7 +35,7 @@ const StatCard = ({
   value: string | number;
   tone?: "default" | "warning";
 }) => (
-  <div className="rounded-3xl border border-border bg-offwhite/50 p-6">
+  <div className="rounded-3xl border border-border bg-offwhite/50 p-6 transition-shadow duration-300 hover:shadow-card">
     <div className="flex items-center justify-between">
       <Icon className={`h-5 w-5 ${tone === "warning" ? "text-destructive" : "text-foreground"}`} strokeWidth={1.5} />
     </div>
@@ -56,7 +56,7 @@ const Dashboard = () => {
         <p className="mt-10 text-sm text-muted-foreground">Chargement…</p>
       ) : (
         <>
-          <div className="mt-8 grid grid-cols-2 gap-5 lg:grid-cols-3 xl:grid-cols-6">
+          <div className="mt-8 grid animate-fade-in grid-cols-2 gap-5 lg:grid-cols-3 xl:grid-cols-6">
             <StatCard icon={Package} label="Produits" value={data.totalProducts} />
             <StatCard icon={Package} label="Produits actifs" value={data.activeProducts} />
             <StatCard icon={PackageX} label="Ruptures de stock" value={data.outOfStockProducts} tone="warning" />
@@ -65,7 +65,7 @@ const Dashboard = () => {
             <StatCard icon={Users} label="Clients inscrits" value={data.totalCustomers} />
           </div>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+          <div className="mt-10 grid animate-fade-in gap-6 lg:grid-cols-[1.4fr_1fr]">
             <div className="rounded-3xl border border-border bg-offwhite/50 p-7">
               <h2 className="font-serif text-xl text-foreground">Commandes récentes</h2>
               <div className="mt-5 space-y-3">

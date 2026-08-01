@@ -61,7 +61,7 @@ const Categories = () => {
 
   return (
     <AdminLayout>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="eyebrow-accent mb-2">Catalogue</p>
           <h1 className="font-serif text-4xl text-foreground">Catégories</h1>
@@ -87,7 +87,7 @@ const Categories = () => {
             </thead>
             <tbody className="divide-y divide-border">
               {categories?.map((c) => (
-                <tr key={c.id}>
+                <tr key={c.id} className="transition-colors hover:bg-offwhite/60">
                   <td className="px-6 py-4 font-serif text-base text-foreground">{c.name}</td>
                   <td className="px-6 py-4 text-muted-foreground">{c.slug}</td>
                   <td className="px-6 py-4 text-muted-foreground">{c.productCount}</td>
@@ -128,7 +128,7 @@ const Categories = () => {
             <Label htmlFor="name">Nom</Label>
             <Input id="name" name="name" required defaultValue={editing?.name} />
           </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
+          {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
           <Button type="submit" className="w-full">
             {editing ? "Enregistrer" : "Créer"}
           </Button>

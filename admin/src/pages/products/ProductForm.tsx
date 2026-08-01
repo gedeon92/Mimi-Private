@@ -127,7 +127,14 @@ const VariantCard = ({ variant, productId }: { variant: AdminVariant; productId:
       <div className="mt-4 flex flex-wrap gap-2">
         {variant.images.map((img, i) => (
           <div key={img.id} className="group relative h-16 w-14 overflow-hidden rounded-md bg-offwhite">
-            <img src={resolveImage(img.url)} alt="" className="h-full w-full object-cover" />
+            <img
+              src={resolveImage(img.url)}
+              alt=""
+              width={56}
+              height={64}
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
             {i === 0 && (
               <span className="absolute left-0.5 top-0.5 rounded-full bg-foreground/80 p-0.5">
                 <Star className="h-2.5 w-2.5 text-background" fill="currentColor" />
@@ -244,7 +251,7 @@ const AddVariantForm = ({ productId }: { productId: string }) => {
           <Label htmlFor="stock">Stock initial</Label>
           <Input id="stock" name="stock" type="number" min={0} defaultValue={0} />
         </div>
-        {error && <p className="text-xs text-destructive">{error}</p>}
+        {error && <p role="alert" className="text-xs text-destructive">{error}</p>}
         <div className="flex gap-2 pt-1">
           <Button type="submit" size="sm">Ajouter</Button>
           <Button type="button" variant="outline" size="sm" onClick={() => setOpen(false)}>Annuler</Button>
@@ -376,7 +383,7 @@ const ProductBaseForm = ({ product }: { product?: AdminProduct }) => {
         Produit disponible (visible côté client)
       </label>
 
-      {error && <p className="text-sm text-destructive">{error}</p>}
+      {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
 
       <Button type="submit" disabled={submitting}>
         {submitting ? "Enregistrement…" : product ? "Enregistrer les modifications" : "Créer le produit"}

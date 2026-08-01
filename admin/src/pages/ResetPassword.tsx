@@ -68,7 +68,7 @@ const ResetPassword = () => {
             <Label htmlFor="confirmPassword">Confirmer le mot de passe</Label>
             <Input id="confirmPassword" name="confirmPassword" type="password" autoComplete="new-password" required />
           </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
+          {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
           <Button type="submit" disabled={submitting} className="w-full">
             {submitting ? "Mise à jour…" : "Réinitialiser le mot de passe"}
           </Button>

@@ -79,7 +79,7 @@ const ProfileSection = () => {
             <label className={labelClass} htmlFor="phone">Téléphone</label>
             <input id="phone" name="phone" type="tel" defaultValue={user.phone ?? ""} className={fieldClass} />
           </div>
-          {error && <p className="text-sm text-destructive sm:col-span-2">{error}</p>}
+          {error && <p role="alert" className="text-sm text-destructive sm:col-span-2">{error}</p>}
           <div className="flex gap-3 sm:col-span-2">
             <button
               type="submit"
@@ -205,7 +205,7 @@ const SecuritySection = () => {
             <label className={labelClass} htmlFor="currentPasswordEmail">Mot de passe actuel</label>
             <input id="currentPasswordEmail" name="currentPassword" type="password" required autoComplete="current-password" className={fieldClass} />
           </div>
-          {error && <p className="text-sm text-destructive sm:col-span-2">{error}</p>}
+          {error && <p role="alert" className="text-sm text-destructive sm:col-span-2">{error}</p>}
           <div className="flex gap-3 sm:col-span-2">
             <button type="submit" disabled={submitting} className="h-11 rounded-full bg-foreground px-8 text-[0.7rem] uppercase tracking-[0.22em] text-background transition-all duration-500 hover:bg-foreground/90 disabled:opacity-60">
               {submitting ? "Enregistrement…" : "Enregistrer"}
@@ -227,7 +227,7 @@ const SecuritySection = () => {
             <label className={labelClass} htmlFor="newPassword">Nouveau mot de passe</label>
             <input id="newPassword" name="newPassword" type="password" required minLength={8} autoComplete="new-password" className={fieldClass} />
           </div>
-          {error && <p className="text-sm text-destructive sm:col-span-2">{error}</p>}
+          {error && <p role="alert" className="text-sm text-destructive sm:col-span-2">{error}</p>}
           <div className="flex gap-3 sm:col-span-2">
             <button type="submit" disabled={submitting} className="h-11 rounded-full bg-foreground px-8 text-[0.7rem] uppercase tracking-[0.22em] text-background transition-all duration-500 hover:bg-foreground/90 disabled:opacity-60">
               {submitting ? "Enregistrement…" : "Enregistrer"}

@@ -265,7 +265,7 @@ const Checkout = () => {
               </span>
             </div>
 
-            {error && <p className="mt-5 text-sm text-destructive">{error}</p>}
+            {error && <p role="alert" className="mt-5 text-sm text-destructive">{error}</p>}
 
             <button
               type="submit"

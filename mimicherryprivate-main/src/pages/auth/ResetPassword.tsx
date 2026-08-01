@@ -81,7 +81,7 @@ const ResetPassword = () => {
           autoComplete="new-password"
           placeholder="••••••••"
         />
-        {error && <p className="text-sm text-destructive">{error}</p>}
+        {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
         <AuthSubmit disabled={submitting}>
           {submitting ? "Mise à jour…" : "Réinitialiser le mot de passe"}
         </AuthSubmit>

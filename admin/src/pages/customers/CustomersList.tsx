@@ -20,7 +20,7 @@ const CustomersList = () => {
       <p className="eyebrow-accent mb-2">Communauté</p>
       <h1 className="font-serif text-4xl text-foreground">Clients</h1>
 
-      <div className="relative mt-6 w-72">
+      <div className="relative mt-6 w-full sm:w-72">
         <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" strokeWidth={1.6} />
         <Input
           placeholder="Rechercher un client…"
@@ -46,7 +46,7 @@ const CustomersList = () => {
             </thead>
             <tbody className="divide-y divide-border">
               {data?.items.map((c) => (
-                <tr key={c.id}>
+                <tr key={c.id} className="transition-colors hover:bg-offwhite/60">
                   <td className="px-6 py-4">
                     <Link to={`/clients/${c.id}`} className="link-underline font-medium text-foreground">
                       {c.firstName} {c.lastName}

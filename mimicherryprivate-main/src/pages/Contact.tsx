@@ -1,8 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { Mail, Instagram, Clock } from "lucide-react";
+import { toast } from "sonner";
 import { EditorialPage } from "@/components/mc/EditorialPage";
 import { Reveal } from "@/components/mc/Reveal";
-import { toast } from "@/hooks/use-toast";
 
 const inputCls =
   "w-full border-0 border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-foreground focus:outline-none focus:ring-0 transition-colors";
@@ -13,8 +13,7 @@ const Contact = () => {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSent(true);
-    toast({
-      title: "Message envoyé",
+    toast("Message envoyé", {
       description: "La Maison vous répondra personnellement dans les meilleurs délais.",
     });
     (e.currentTarget as HTMLFormElement).reset();
