@@ -6,7 +6,7 @@ import { Footer } from "@/components/mc/Footer";
 import { Reveal } from "@/components/mc/Reveal";
 import { useProducts } from "@/api/products";
 import type { Product, ProductColor } from "@/data/products";
-import collectionHero from "@/assets/hero-slide-2.jpg";
+import collectionHero from "@/assets/hero-slide-2.webp";
 
 /**
  * La collection FORM 01 racontée comme une seule silhouette iconique déclinée

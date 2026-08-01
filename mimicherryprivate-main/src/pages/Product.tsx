@@ -13,6 +13,7 @@ import {
 import { useProduct, useProducts } from "@/api/products";
 import { useCart } from "@/context/CartContext";
 import { useFavorites } from "@/context/FavoritesContext";
+import { Skeleton } from "@/components/mc/Skeleton";
 
 const ProductPage = () => {
   const { id: slug } = useParams();
@@ -40,10 +41,22 @@ const ProductPage = () => {
     return (
       <div className="min-h-screen bg-background">
         <Header overHero={false} />
-        <main className="flex min-h-[60vh] items-center justify-center px-5">
-          <p className="text-sm uppercase tracking-[0.22em] text-muted-foreground">
-            Chargement…
-          </p>
+        <main className="mx-auto grid max-w-7xl gap-6 px-4 pb-16 pt-24 md:grid-cols-2 md:gap-16 md:px-10 md:pb-24 md:pt-28">
+          <Skeleton className="aspect-[4/5] w-full rounded-none" />
+          <div className="space-y-4">
+            <Skeleton className="h-3 w-24" />
+            <Skeleton className="h-10 w-2/3" />
+            <Skeleton className="h-4 w-32" />
+            <Skeleton className="mt-4 h-5 w-28" />
+            <Skeleton className="h-px w-32" />
+            <Skeleton className="h-20 w-full max-w-md" />
+            <div className="flex gap-3 pt-2">
+              <Skeleton className="h-8 w-8 rounded-full" />
+              <Skeleton className="h-8 w-8 rounded-full" />
+              <Skeleton className="h-8 w-8 rounded-full" />
+            </div>
+            <Skeleton className="mt-6 h-14 w-full max-w-sm rounded-full" />
+          </div>
         </main>
         <Footer />
       </div>
@@ -179,7 +192,7 @@ const ProductPage = () => {
 
               {/* Quantité + panier */}
               <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <div className="flex h-12 items-center justify-between rounded-full border border-foreground/15 px-3 sm:w-32">
+                <div className="flex h-14 items-center justify-between rounded-full border border-foreground/15 px-3 sm:w-32">
                   <button
                     type="button"
                     onClick={() => setQty((q) => Math.max(1, q - 1))}
@@ -203,9 +216,9 @@ const ProductPage = () => {
                   type="button"
                   onClick={handleAdd}
                   disabled={outOfStock}
-                  className="flex h-12 flex-1 items-center justify-center gap-2 rounded-full bg-foreground px-8 text-[0.7rem] uppercase tracking-[0.22em] text-background transition-all duration-500 hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex h-14 flex-1 items-center justify-center gap-2.5 rounded-full bg-foreground px-10 text-[0.74rem] uppercase tracking-[0.22em] text-background shadow-soft transition-all duration-500 hover:bg-foreground/90 hover:shadow-bag disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
                 >
-                  <ShoppingBag className="h-4 w-4" strokeWidth={1.5} />
+                  <ShoppingBag className="h-[1.15rem] w-[1.15rem]" strokeWidth={1.5} />
                   {outOfStock ? "Épuisé" : added ? "Ajouté au panier" : "Ajouter au panier"}
                 </button>
               </div>

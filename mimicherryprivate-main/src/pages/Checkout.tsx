@@ -9,6 +9,7 @@ import { useCart, formatFcfa } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import { createOrder } from "@/api/orders";
 import { ApiError } from "@/lib/api";
+import { Skeleton } from "@/components/mc/Skeleton";
 
 const fieldClass =
   "h-11 w-full rounded-lg border border-border bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground/70 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground/40";
@@ -68,7 +69,28 @@ const Checkout = () => {
     }
   };
 
-  if (!ready || count === 0) return null;
+  if (!ready) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header overHero={false} />
+        <main className="mx-auto max-w-7xl px-5 pb-24 pt-28 md:px-10 md:pb-32 md:pt-32">
+          <Skeleton className="h-4 w-40" />
+          <Skeleton className="mt-4 h-10 w-56" />
+          <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_380px] lg:gap-16">
+            <div className="space-y-6">
+              <Skeleton className="h-6 w-48" />
+              <Skeleton className="h-11 w-full" />
+              <Skeleton className="h-11 w-full" />
+            </div>
+            <Skeleton className="h-64 w-full rounded-3xl" />
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (count === 0) return null;
 
   return (
     <div className="min-h-screen bg-background">

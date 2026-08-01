@@ -1,9 +1,9 @@
 import { Reveal } from "./Reveal";
 import { Instagram } from "lucide-react";
-import insta1 from "@/assets/insta-1.jpg";
-import insta2 from "@/assets/insta-2.jpg";
-import insta3 from "@/assets/insta-3.jpg";
-import insta4 from "@/assets/insta-4.jpg";
+import insta1 from "@/assets/insta-1.webp";
+import insta2 from "@/assets/insta-2.webp";
+import insta3 from "@/assets/insta-3.webp";
+import insta4 from "@/assets/insta-4.webp";
 
 const posts = [insta1, insta2, insta3, insta4];
 

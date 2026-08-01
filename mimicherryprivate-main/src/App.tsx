@@ -7,6 +7,7 @@ import { CartProvider } from "@/context/CartContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import { AuthProvider } from "@/context/AuthContext";
 import { ProtectedRoute } from "@/components/mc/ProtectedRoute";
+import { Skeleton } from "@/components/mc/Skeleton";
 // La page d'accueil reste en import statique (premier écran vu par la
 // majorité des visiteurs — évite un flash de chargement sur l'entrée la
 // plus fréquente). Toutes les autres routes sont chargées à la demande.
@@ -33,14 +34,28 @@ const FAQ = lazy(() => import("./pages/FAQ.tsx"));
 const Contact = lazy(() => import("./pages/Contact.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 
-const queryClient = new QueryClient();
+// Par défaut, React Query recharge les données à chaque retour sur l'onglet
+// avec staleTime: 0 — sur un site éditorial peu volatile, ça se traduit par
+// des re-fetch visibles et des re-render inutiles à chaque navigation. Les
+// mutations invalident déjà explicitement leurs requêtes (cf. contexts et
+// pages admin), donc ce réglage plus permissif ne fait perdre aucune fraîcheur
+// réellement nécessaire.
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60_000,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
-/** Affiché brièvement pendant le chargement du code d'une route — sobre, sans marque forte pour rester invisible en pratique. */
+/** Affiché brièvement pendant le chargement du code d'une route — les chunks
+ * étant petits (quelques Ko), ceci n'est visible qu'une fraction de seconde
+ * dans la plupart des cas ; un skeleton discret évite le flash de texte. */
 const RouteFallback = () => (
-  <div className="flex min-h-screen items-center justify-center bg-background">
-    <p className="text-[0.62rem] uppercase tracking-[0.3em] text-muted-foreground">
-      Chargement…
-    </p>
+  <div className="flex min-h-screen flex-col items-center justify-center gap-3 bg-background">
+    <Skeleton className="h-3 w-32" />
+    <Skeleton className="h-3 w-20" />
   </div>
 );
 

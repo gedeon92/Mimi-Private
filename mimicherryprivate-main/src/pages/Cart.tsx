@@ -5,6 +5,7 @@ import { Header } from "@/components/mc/Header";
 import { Footer } from "@/components/mc/Footer";
 import { Reveal } from "@/components/mc/Reveal";
 import { useCart, formatFcfa } from "@/context/CartContext";
+import { Skeleton } from "@/components/mc/Skeleton";
 
 const Cart = () => {
   const { items, count, subtotal, ready, setQty, removeItem } = useCart();
@@ -25,7 +26,18 @@ const Cart = () => {
         </Reveal>
 
         {!ready ? (
-          <p className="mt-12 text-sm text-muted-foreground">Chargement…</p>
+          <div className="mt-12 space-y-6">
+            {[0, 1].map((i) => (
+              <div key={i} className="flex gap-5 border-b border-border pb-6">
+                <Skeleton className="h-32 w-24 shrink-0 sm:w-28" />
+                <div className="flex-1 space-y-3 pt-1">
+                  <Skeleton className="h-3 w-20" />
+                  <Skeleton className="h-5 w-40" />
+                  <Skeleton className="h-3 w-24" />
+                </div>
+              </div>
+            ))}
+          </div>
         ) : count === 0 ? (
           <Reveal className="mt-12">
             <div className="rounded-3xl border border-border bg-offwhite/60 px-8 py-20 text-center">

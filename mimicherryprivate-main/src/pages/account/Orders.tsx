@@ -4,6 +4,7 @@ import { AccountLayout, AccountEmpty } from "@/components/mc/AccountLayout";
 import { getOrders, type Order } from "@/api/orders";
 import { formatFcfa } from "@/context/CartContext";
 import { resolveProductImage } from "@/data/productAssets";
+import { Skeleton } from "@/components/mc/Skeleton";
 
 const statusLabels: Record<Order["status"], string> = {
   PENDING: "En attente",
@@ -26,7 +27,11 @@ const Orders = () => {
   if (isLoading) {
     return (
       <AccountLayout title="Mes commandes" intro="Suivez vos commandes en cours et consultez votre historique d'achats.">
-        <p className="text-sm text-muted-foreground">Chargement…</p>
+        <div className="space-y-4">
+          {[0, 1, 2].map((i) => (
+            <Skeleton key={i} className="h-24 w-full rounded-2xl" />
+          ))}
+        </div>
       </AccountLayout>
     );
   }

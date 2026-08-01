@@ -12,6 +12,7 @@ import {
   type AddressPayload,
 } from "@/api/addresses";
 import { ApiError } from "@/lib/api";
+import { Skeleton } from "@/components/mc/Skeleton";
 
 const fieldClass =
   "h-11 w-full rounded-lg border border-border bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground/70 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground/40";
@@ -197,7 +198,11 @@ const Addresses = () => {
   if (isLoading) {
     return (
       <AccountLayout title="Mes adresses" intro="Gérez vos adresses de livraison et de facturation.">
-        <p className="text-sm text-muted-foreground">Chargement…</p>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {[0, 1].map((i) => (
+            <Skeleton key={i} className="h-40 w-full rounded-2xl" />
+          ))}
+        </div>
       </AccountLayout>
     );
   }

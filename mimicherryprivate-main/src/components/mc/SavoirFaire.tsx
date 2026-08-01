@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { EmblaCarousel } from "./EmblaCarousel";
-import sf1 from "@/assets/home-precision/hp-1.jpg";
-import sf2 from "@/assets/home-precision/hp-2.jpg";
-import sf3 from "@/assets/home-precision/hp-3.jpg";
-import sf4 from "@/assets/home-precision/hp-4.jpg";
-import sf5 from "@/assets/home-precision/hp-5.jpg";
-import sf6 from "@/assets/home-precision/hp-6.jpg";
+import sf1 from "@/assets/home-precision/hp-1.webp";
+import sf2 from "@/assets/home-precision/hp-2.webp";
+import sf3 from "@/assets/home-precision/hp-3.webp";
+import sf4 from "@/assets/home-precision/hp-4.webp";
+import sf5 from "@/assets/home-precision/hp-5.webp";
+import sf6 from "@/assets/home-precision/hp-6.webp";
 
 const details = [
   { src: sf1, alt: "Savoir-faire Mimi Cherry Private — détail artisanal" },

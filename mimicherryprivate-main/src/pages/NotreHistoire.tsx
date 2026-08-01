@@ -6,15 +6,15 @@ import { Footer } from "@/components/mc/Footer";
 import { Reveal } from "@/components/mc/Reveal";
 import { Cta } from "@/components/mc/Cta";
 
-import heroImg from "@/assets/editorial-feature.jpg";
-import founderImg from "@/assets/founder.jpg";
+import heroImg from "@/assets/editorial-feature.webp";
+import founderImg from "@/assets/founder.webp";
 
-import collectionImg from "@/assets/editorial-collection.jpg";
-import duoImg from "@/assets/editorial-duo.jpg";
+import collectionImg from "@/assets/editorial-collection.webp";
+import duoImg from "@/assets/editorial-duo.webp";
 
-import standard from "@/assets/histoire-strategie/standard.jpg";
-import mini from "@/assets/histoire-strategie/mini.jpg";
-import wallet from "@/assets/histoire-strategie/wallet.jpg";
+import standard from "@/assets/histoire-strategie/standard.webp";
+import mini from "@/assets/histoire-strategie/mini.webp";
+import wallet from "@/assets/histoire-strategie/wallet.webp";
 
 const icons = [
   { line: "FORM 01", name: "Standard", img: standard, id: "standard" },

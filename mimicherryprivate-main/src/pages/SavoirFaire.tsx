@@ -5,11 +5,11 @@ import { Footer } from "@/components/mc/Footer";
 import { Reveal } from "@/components/mc/Reveal";
 import { Cta } from "@/components/mc/Cta";
 
-import sf1 from "@/assets/savoir-faire/sf-1.jpg";
-import sf2 from "@/assets/savoir-faire/sf-2.jpg";
-import sf3 from "@/assets/savoir-faire/sf-3.jpg";
-import sf4 from "@/assets/savoir-faire/sf-4.jpg";
-import sf5 from "@/assets/savoir-faire/sf-5.jpg";
+import sf1 from "@/assets/savoir-faire/sf-1.webp";
+import sf2 from "@/assets/savoir-faire/sf-2.webp";
+import sf3 from "@/assets/savoir-faire/sf-3.webp";
+import sf4 from "@/assets/savoir-faire/sf-4.webp";
+import sf5 from "@/assets/savoir-faire/sf-5.webp";
 
 
 const SavoirFairePage = () => {

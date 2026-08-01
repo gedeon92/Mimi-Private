@@ -5,38 +5,38 @@
 // et cette résolution locale n'aura plus lieu d'être pour ces images-là.
 
 // FORM 01 STANDARD
-import stdChocolat from "@/assets/products/std-chocolat.jpg";
-import stdRouge from "@/assets/products/std-rouge.jpg";
-import stdFauve from "@/assets/products/std-fauve.jpg";
-import stdOlive from "@/assets/products/std-olive.jpg";
-import stdCamel from "@/assets/products/std-camel.jpg";
+import stdChocolat from "@/assets/products/std-chocolat.webp";
+import stdRouge from "@/assets/products/std-rouge.webp";
+import stdFauve from "@/assets/products/std-fauve.webp";
+import stdOlive from "@/assets/products/std-olive.webp";
+import stdCamel from "@/assets/products/std-camel.webp";
 
 // FORM 01 MINI
-import miniBronze from "@/assets/products/mini-bronze.jpg";
-import miniPython from "@/assets/products/mini-python.jpg";
-import miniTurquoise from "@/assets/products/mini-turquoise.jpg";
-import miniNaturel from "@/assets/products/mini-naturel.jpg";
-import miniCaramel from "@/assets/products/mini-caramel.jpg";
-import miniRose from "@/assets/products/mini-rose.jpg";
+import miniBronze from "@/assets/products/mini-bronze.webp";
+import miniPython from "@/assets/products/mini-python.webp";
+import miniTurquoise from "@/assets/products/mini-turquoise.webp";
+import miniNaturel from "@/assets/products/mini-naturel.webp";
+import miniCaramel from "@/assets/products/mini-caramel.webp";
+import miniRose from "@/assets/products/mini-rose.webp";
 
 // FORM 01 WALLET
-import wltNaturel from "@/assets/products/wlt-naturel.jpg";
-import wltCreme from "@/assets/products/wlt-creme.jpg";
-import wltBlush from "@/assets/products/wlt-blush.jpg";
-import wltRose from "@/assets/products/wlt-rose.jpg";
-import wltRouge from "@/assets/products/wlt-rouge.jpg";
-import wltOrange from "@/assets/products/wlt-orange.jpg";
-import wltChocolat from "@/assets/products/wlt-chocolat.jpg";
-import wltOlive from "@/assets/products/wlt-olive.jpg";
-import wltTurquoise from "@/assets/products/wlt-turquoise.jpg";
+import wltNaturel from "@/assets/products/wlt-naturel.webp";
+import wltCreme from "@/assets/products/wlt-creme.webp";
+import wltBlush from "@/assets/products/wlt-blush.webp";
+import wltRose from "@/assets/products/wlt-rose.webp";
+import wltRouge from "@/assets/products/wlt-rouge.webp";
+import wltOrange from "@/assets/products/wlt-orange.webp";
+import wltChocolat from "@/assets/products/wlt-chocolat.webp";
+import wltOlive from "@/assets/products/wlt-olive.webp";
+import wltTurquoise from "@/assets/products/wlt-turquoise.webp";
 
 // FORM 01 SET
-import setTurquoise from "@/assets/products/set-turquoise.jpg";
-import setCaramel from "@/assets/products/set-caramel.jpg";
-import setOlive from "@/assets/products/set-olive.jpg";
-import setChocolat from "@/assets/products/set-chocolat.jpg";
-import setRouge from "@/assets/products/set-rouge.jpg";
-import setRose from "@/assets/products/set-rose.jpg";
+import setTurquoise from "@/assets/products/set-turquoise.webp";
+import setCaramel from "@/assets/products/set-caramel.webp";
+import setOlive from "@/assets/products/set-olive.webp";
+import setChocolat from "@/assets/products/set-chocolat.webp";
+import setRouge from "@/assets/products/set-rouge.webp";
+import setRose from "@/assets/products/set-rose.webp";
 
 const productAssets: Record<string, string> = {
   "std-chocolat": stdChocolat,

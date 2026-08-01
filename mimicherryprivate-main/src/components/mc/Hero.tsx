@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Cta } from "./Cta";
-import slide1 from "@/assets/hero-slide-1.jpg";
-import slide2 from "@/assets/hero-slide-2.jpg";
-import slide3 from "@/assets/hero-slide-3.jpg";
-import slide4 from "@/assets/hero-slide-4.jpg";
+import slide1 from "@/assets/hero-slide-1.webp";
+import slide2 from "@/assets/hero-slide-2.webp";
+import slide3 from "@/assets/hero-slide-3.webp";
+import slide4 from "@/assets/hero-slide-4.webp";
 
 const slides = [
   {
@@ -43,6 +43,9 @@ export const Hero = () => {
           key={index}
           src={slides[index].img}
           alt={slides[index].alt}
+          // Priorise le tout premier visuel de la page (LCP) ; les diapositives
+          // suivantes n'ont plus besoin d'être prioritaires une fois affichées.
+          fetchPriority={index === 0 ? "high" : "auto"}
           initial={{ opacity: 0, scale: 1.06 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}

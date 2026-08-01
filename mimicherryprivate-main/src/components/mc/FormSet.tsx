@@ -1,11 +1,11 @@
 import { Reveal } from "./Reveal";
 import { EmblaCarousel } from "./EmblaCarousel";
-import bottom1 from "@/assets/campaign-bottom/b-1.jpg";
-import bottom2 from "@/assets/campaign-bottom/b-2.jpg";
-import bottom3 from "@/assets/campaign-bottom/b-3.jpg";
-import bottom4 from "@/assets/campaign-bottom/b-4.jpg";
-import bottom5 from "@/assets/campaign-bottom/b-5.jpg";
-import bottom6 from "@/assets/campaign-bottom/b-6.jpg";
+import bottom1 from "@/assets/campaign-bottom/b-1.webp";
+import bottom2 from "@/assets/campaign-bottom/b-2.webp";
+import bottom3 from "@/assets/campaign-bottom/b-3.webp";
+import bottom4 from "@/assets/campaign-bottom/b-4.webp";
+import bottom5 from "@/assets/campaign-bottom/b-5.webp";
+import bottom6 from "@/assets/campaign-bottom/b-6.webp";
 
 const views = [
   { src: bottom1, alt: "Campagne Mimi Cherry Private — silhouette éditoriale I" },

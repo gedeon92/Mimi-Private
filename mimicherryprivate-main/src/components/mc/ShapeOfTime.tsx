@@ -1,11 +1,11 @@
 import { Reveal } from "./Reveal";
 import { Cta } from "./Cta";
 import { EmblaCarousel } from "./EmblaCarousel";
-import campaign1 from "@/assets/campaign-1.jpg";
-import campaign2 from "@/assets/campaign-2.jpg";
-import campaign3 from "@/assets/campaign-3.jpg";
-import campaign4 from "@/assets/campaign-4.jpg";
-import campaign5 from "@/assets/campaign-5.jpg";
+import campaign1 from "@/assets/campaign-1.webp";
+import campaign2 from "@/assets/campaign-2.webp";
+import campaign3 from "@/assets/campaign-3.webp";
+import campaign4 from "@/assets/campaign-4.webp";
+import campaign5 from "@/assets/campaign-5.webp";
 
 const slides = [
   { src: campaign1, alt: "Campagne Mimi Cherry Private — silhouette éditoriale I" },
