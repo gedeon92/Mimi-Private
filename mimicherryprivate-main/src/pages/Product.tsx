@@ -216,9 +216,9 @@ const ProductPage = () => {
                   type="button"
                   onClick={handleAdd}
                   disabled={outOfStock}
-                  className="flex h-14 flex-1 items-center justify-center gap-2.5 rounded-full bg-foreground px-10 text-[0.74rem] uppercase tracking-[0.22em] text-background shadow-soft transition-all duration-500 hover:bg-foreground/90 hover:shadow-bag disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
+                  className="flex h-16 w-full flex-1 items-center justify-center gap-2.5 rounded-full bg-foreground px-10 text-xs uppercase tracking-[0.22em] text-background shadow-soft transition-all duration-500 hover:bg-foreground/90 hover:shadow-bag disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none sm:h-14"
                 >
-                  <ShoppingBag className="h-[1.15rem] w-[1.15rem]" strokeWidth={1.5} />
+                  <ShoppingBag className="h-5 w-5 sm:h-[1.15rem] sm:w-[1.15rem]" strokeWidth={1.5} />
                   {outOfStock ? "Épuisé" : added ? "Ajouté au panier" : "Ajouter au panier"}
                 </button>
               </div>
