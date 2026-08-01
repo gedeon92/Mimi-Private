@@ -1,0 +1,6 @@
+# Assets bruts (shootings photo, maquettes) — pas du code, trop volumineux pour Git
+/Mimi Cherry Private - Assets Website/
+/SHOOT MPMC/
+
+# Configuration locale Claude Code (spécifique à cette machine)
+.claude/

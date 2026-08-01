@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mimi Cherry Private — Sculptural luxury design system. All colors HSL. */
+
+@layer base {
+  :root {
+    /* Core neutrals — deep black, warm white, soft ivory, light stone */
+    --background: 40 20% 98%;          /* warm white */
+    --foreground: 24 9% 8%;            /* deep black */
+
+    --card: 40 16% 96%;
+    --card-foreground: 24 9% 8%;
+
+    --popover: 40 20% 99%;
+    --popover-foreground: 24 9% 8%;
+
+    /* Deep black as primary */
+    --primary: 24 10% 7%;
+    --primary-foreground: 40 22% 97%;
+
+    --secondary: 36 10% 93%;
+    --secondary-foreground: 24 9% 8%;
+
+    --muted: 34 8% 93%;
+    --muted-foreground: 26 5% 42%;
+
+    --accent: 34 9% 91%;
+    --accent-foreground: 24 9% 8%;
+
+    --destructive: 0 60% 40%;
+    --destructive-foreground: 40 22% 97%;
+
+    --border: 32 8% 88%;
+    --input: 32 8% 88%;
+    --ring: 24 9% 20%;
+
+    --radius: 1.5rem;
+
+    /* Brand palette — neutral base, handbag colors as accents only */
+    --ivory: 40 24% 95%;               /* soft ivory */
+    --offwhite: 36 12% 93%;            /* light stone gray */
+    --stone: 30 7% 88%;
+    --ink: 24 10% 7%;                  /* deep black */
+    --gold: 36 22% 54%;                /* muted, used sparingly */
+    --gold-soft: 38 26% 70%;
+    --burgundy: 350 42% 26%;           /* deep burgundy accent */
+    --burgundy-deep: 350 46% 19%;
+    --signature-red: 4 62% 46%;        /* subtle red from the logo */
+    --charcoal: 24 7% 17%;             /* charcoal grey */
+    --logo-grey: 30 4% 52%;            /* logo grey */
+    --beige: 36 26% 90%;               /* warm beige */
+    --beige-deep: 34 24% 85%;
+    --blush: 12 42% 80%;
+    --celadon: 190 22% 62%;
+    --sage: 95 14% 56%;
+
+    --gradient-warm: linear-gradient(180deg, hsl(40 22% 98%) 0%, hsl(36 12% 94%) 100%);
+    --gradient-gold: linear-gradient(120deg, hsl(38 26% 70%), hsl(36 22% 54%));
+    --gradient-ink: linear-gradient(180deg, hsl(24 10% 7% / 0) 0%, hsl(24 10% 7% / 0.78) 100%);
+    --gradient-burgundy: linear-gradient(135deg, hsl(350 42% 26%), hsl(350 46% 19%));
+    --shadow-soft: 0 30px 60px -30px hsl(24 12% 12% / 0.16);
+    --shadow-bag: 0 40px 80px -40px hsl(24 14% 8% / 0.28);
+    --shadow-card: 0 24px 50px -28px hsl(24 14% 8% / 0.22);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Offset anchored sections for the fixed header */
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Jost", sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: "Cormorant Garamond", serif;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-xs uppercase tracking-[0.35em] text-muted-foreground font-sans font-medium;
+  }
+  .eyebrow-accent {
+    @apply text-xs uppercase tracking-[0.35em] font-sans font-medium;
+    color: hsl(var(--burgundy));
+  }
+  .link-underline {
+    @apply relative inline-block after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-current after:transition-all after:duration-500 hover:after:w-full;
+  }
+  /* Soft sculptural curve echoing the MC silhouette */
+  .curve-soft {
+    border-radius: 1.75rem 1.75rem 0 0;
+  }
+  .rule-fade {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--foreground) / 0.18), transparent);
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  /* Restrained image zoom used on product/editorial cards */
+  .img-zoom {
+    transition-property: transform;
+    transition-duration: 1100ms;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+  .group:hover .img-zoom { transform: scale(1.06); }
+}

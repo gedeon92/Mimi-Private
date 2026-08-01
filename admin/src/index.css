@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mêmes tokens de design que le front client (mimicherryprivate-main/src/index.css)
+   pour garantir une identité visuelle cohérente entre les deux applications. */
+
+@layer base {
+  :root {
+    --background: 40 20% 98%;
+    --foreground: 24 9% 8%;
+
+    --card: 40 16% 96%;
+    --card-foreground: 24 9% 8%;
+
+    --primary: 24 10% 7%;
+    --primary-foreground: 40 22% 97%;
+
+    --secondary: 36 10% 93%;
+    --secondary-foreground: 24 9% 8%;
+
+    --muted: 34 8% 93%;
+    --muted-foreground: 26 5% 42%;
+
+    --accent: 34 9% 91%;
+    --accent-foreground: 24 9% 8%;
+
+    --destructive: 0 60% 40%;
+    --destructive-foreground: 40 22% 97%;
+
+    --success: 150 30% 32%;
+    --success-foreground: 40 22% 97%;
+
+    --border: 32 8% 88%;
+    --input: 32 8% 88%;
+    --ring: 24 9% 20%;
+
+    --radius: 1rem;
+
+    --ivory: 40 24% 95%;
+    --offwhite: 36 12% 93%;
+    --stone: 30 7% 88%;
+    --ink: 24 10% 7%;
+    --gold: 36 22% 54%;
+    --gold-soft: 38 26% 70%;
+    --burgundy: 350 42% 26%;
+    --burgundy-deep: 350 46% 19%;
+
+    --shadow-soft: 0 30px 60px -30px hsl(24 12% 12% / 0.16);
+    --shadow-card: 0 24px 50px -28px hsl(24 14% 8% / 0.22);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Jost", sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: "Cormorant Garamond", serif;
+  }
+}
+
+@layer components {
+  .eyebrow-accent {
+    @apply text-xs uppercase tracking-[0.3em] font-sans font-medium;
+    color: hsl(var(--burgundy));
+  }
+  .link-underline {
+    @apply relative inline-block after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-current after:transition-all after:duration-500 hover:after:w-full;
+  }
+}

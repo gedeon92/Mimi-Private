@@ -1,0 +1,274 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CLIENT
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  firstName    String
+  lastName     String
+  phone        String?
+  role         Role     @default(CLIENT)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  addresses           Address[]
+  cartItems           CartItem[]
+  favorites           Favorite[]
+  orders              Order[]
+  refreshTokens       RefreshToken[]
+  passwordResetTokens PasswordResetToken[]
+
+  @@map("users")
+}
+
+/// Un jeton par session/appareil connecté — permet une déconnexion ciblée
+/// (révocation) sans invalider les autres sessions actives de l'utilisateur.
+model RefreshToken {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String    @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+  @@map("refresh_tokens")
+}
+
+/// Jeton à usage unique et courte durée de vie pour "mot de passe oublié".
+model PasswordResetToken {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+  @@map("password_reset_tokens")
+}
+
+model Address {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  label     String
+  firstName String
+  lastName  String
+  phone     String
+  line1     String
+  line2     String?
+  city      String
+  country   String   @default("Sénégal")
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  orders Order[]
+
+  @@index([userId])
+  @@map("addresses")
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+
+  products Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id               String   @id @default(uuid())
+  categoryId       String
+  category         Category @relation(fields: [categoryId], references: [id])
+  line             String
+  name             String
+  /// Identifiant public stable utilisé dans les URLs (ex. "standard") —
+  /// contrairement à l'id interne, il ne doit jamais changer une fois publié.
+  slug             String   @unique
+  ref              String   @unique
+  /// Ordre de présentation dans les grilles marchandes (curation manuelle,
+  /// modifiable plus tard depuis l'admin) — indépendant de la date de création.
+  displayOrder     Int      @default(0)
+  price            Int
+  detail           String
+  shortDescription String
+  story            String
+  designIntent     String
+  materials        String
+  craftsmanship    String
+  care             String
+  tag              String?
+  isActive         Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  variants ProductVariant[]
+
+  @@index([categoryId])
+  @@map("products")
+}
+
+/// Une teinte disponible d'un produit — c'est la variante réellement ajoutée
+/// au panier, mise en favoris ou commandée (elle porte le stock).
+model ProductVariant {
+  id        String   @id @default(uuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  colorName String
+  swatchHex String
+  sku       String   @unique
+  stock     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  images     ProductImage[]
+  cartItems  CartItem[]
+  favorites  Favorite[]
+  orderItems OrderItem[]
+
+  @@unique([productId, colorName])
+  @@index([productId])
+  @@map("product_variants")
+}
+
+model ProductImage {
+  id        String         @id @default(uuid())
+  variantId String
+  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  /// URL absolue (Cloudinary) une fois l'upload admin en place, ou clé de
+  /// correspondance vers un asset déjà bundlé côté front en phase de transition.
+  url       String
+  publicId  String?
+  position  Int            @default(0)
+  createdAt DateTime       @default(now())
+
+  @@index([variantId])
+  @@map("product_images")
+}
+
+model CartItem {
+  id        String         @id @default(uuid())
+  userId    String
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  variantId String
+  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  quantity  Int            @default(1)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  @@unique([userId, variantId])
+  @@map("cart_items")
+}
+
+model Favorite {
+  id        String         @id @default(uuid())
+  userId    String
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  variantId String
+  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  createdAt DateTime       @default(now())
+
+  @@unique([userId, variantId])
+  @@map("favorites")
+}
+
+model Order {
+  id        String      @id @default(uuid())
+  userId    String
+  user      User        @relation(fields: [userId], references: [id])
+  addressId String?
+  address   Address?    @relation(fields: [addressId], references: [id])
+  status    OrderStatus @default(PENDING)
+  subtotal  Int
+  shippingCost Int      @default(0)
+  total     Int
+
+  // Copie figée de l'adresse au moment de la commande : une commande passée
+  // ne doit jamais changer si l'utilisateur modifie/supprime l'adresse ensuite.
+  shippingFirstName String
+  shippingLastName  String
+  shippingEmail     String
+  shippingPhone     String
+  shippingLine1     String
+  shippingLine2     String?
+  shippingCity      String
+  shippingCountry   String
+  notes             String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items   OrderItem[]
+  payment Payment?
+
+  @@index([userId])
+  @@map("orders")
+}
+
+model OrderItem {
+  id          String          @id @default(uuid())
+  orderId     String
+  order       Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  variantId   String?
+  variant     ProductVariant? @relation(fields: [variantId], references: [id], onDelete: SetNull)
+
+  // Copie figée du produit au moment de l'achat (traçabilité même si le
+  // produit est modifié ou supprimé du catalogue par la suite).
+  productName String
+  colorName   String
+  image       String
+  unitPrice   Int
+  quantity    Int
+
+  @@index([orderId])
+  @@map("order_items")
+}
+
+model Payment {
+  id             String        @id @default(uuid())
+  orderId        String        @unique
+  order          Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  provider       String
+  status         PaymentStatus @default(PENDING)
+  amount         Int
+  transactionRef String?
+  paidAt         DateTime?
+  createdAt      DateTime      @default(now())
+
+  @@map("payments")
+}

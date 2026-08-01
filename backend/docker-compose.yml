@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: mcp_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: mcp
+      POSTGRES_PASSWORD: mcp_dev_password
+      POSTGRES_DB: mimicherryprivate
+    ports:
+      - "5433:5432"
+    volumes:
+      - mcp_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  mcp_postgres_data:
