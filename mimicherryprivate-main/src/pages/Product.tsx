@@ -192,7 +192,7 @@ const ProductPage = () => {
 
               {/* Quantité + panier */}
               <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <div className="flex h-14 items-center justify-between rounded-full border border-foreground/15 px-3 sm:w-32">
+                <div className="flex h-16 items-center justify-between rounded-full border border-foreground/15 px-3 sm:w-32">
                   <button
                     type="button"
                     onClick={() => setQty((q) => Math.max(1, q - 1))}
@@ -216,9 +216,9 @@ const ProductPage = () => {
                   type="button"
                   onClick={handleAdd}
                   disabled={outOfStock}
-                  className="flex h-16 w-full flex-1 items-center justify-center gap-2.5 rounded-full bg-foreground px-10 text-xs uppercase tracking-[0.22em] text-background shadow-soft transition-all duration-500 hover:bg-foreground/90 hover:shadow-bag disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none sm:h-14"
+                  className="flex h-16 w-full flex-1 items-center justify-center gap-2.5 rounded-full bg-foreground px-10 text-xs uppercase tracking-[0.22em] text-background shadow-soft transition-all duration-500 hover:bg-foreground/90 hover:shadow-bag disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
                 >
-                  <ShoppingBag className="h-5 w-5 sm:h-[1.15rem] sm:w-[1.15rem]" strokeWidth={1.5} />
+                  <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
                   {outOfStock ? "Épuisé" : added ? "Ajouté au panier" : "Ajouter au panier"}
                 </button>
               </div>
