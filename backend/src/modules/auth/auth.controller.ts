@@ -42,10 +42,15 @@ export class AuthController {
   ) {}
 
   private setRefreshCookie(res: Response, token: string) {
+    // En production, front (Vercel) et API (Render) sont sur des domaines
+    // différents : le cookie est donc cross-site et exige sameSite "none"
+    // (qui impose lui-même secure: true). En local, "lax" suffit et évite
+    // d'exiger HTTPS pour le développement.
+    const isProd = process.env.NODE_ENV === "production";
     res.cookie(REFRESH_COOKIE, token, {
       httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
+      sameSite: isProd ? "none" : "lax",
+      secure: isProd,
       path: REFRESH_COOKIE_PATH,
       maxAge: parseDurationMs(this.config.get("JWT_REFRESH_TTL", { infer: true })),
     });
@@ -57,10 +62,11 @@ export class AuthController {
   }
 
   private setAdminRefreshCookie(res: Response, token: string) {
+    const isProd = process.env.NODE_ENV === "production";
     res.cookie(ADMIN_REFRESH_COOKIE, token, {
       httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
+      sameSite: isProd ? "none" : "lax",
+      secure: isProd,
       path: ADMIN_REFRESH_COOKIE_PATH,
       maxAge: parseDurationMs(this.config.get("JWT_REFRESH_TTL", { infer: true })),
     });
